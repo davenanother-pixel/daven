@@ -6,8 +6,8 @@
     <title>Daven's World</title>
     
     <!-- Meta Tags -->
-    <meta name="description" content="Just Daven's personal space on the internet">
-    <meta name="keywords" content="Just me lol..">
+    <meta name="description" content="Daven's personal website">
+    <meta name="keywords" content="Daven, personal website">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
@@ -102,37 +102,31 @@
             font-size: 4rem;
             font-weight: 300;
             color: white;
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
             letter-spacing: -2px;
             animation: fadeInUp 2s ease-out;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 3rem;
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
             animation: fadeInUp 2s ease-out 0.3s both;
         }
 
-        .links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            animation: fadeInUp 2s ease-out 0.6s both;
-        }
-
-        .link {
+        .btn {
             color: white;
             text-decoration: none;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 25px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            font-size: 0.9rem;
         }
 
-        .link:hover {
+        .btn:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
@@ -204,8 +198,8 @@
         /* Responsive */
         @media (max-width: 768px) {
             .title { font-size: 3rem; }
-            .subtitle { font-size: 1rem; }
-            .links { flex-direction: column; align-items: center; }
+            .button-group { flex-direction: column; align-items: center; }
+            .btn { width: 200px; text-align: center; }
         }
     </style>
 </head>
@@ -223,10 +217,11 @@
     <!-- Main content -->
     <div class="content">
         <h1 class="title">Daven's World</h1>
-        <p class="subtitle">ye this lowk kinda boring</p>
-        <div class="links">
-            <a href="https://discord.gg/hccg2rY5p" class="link" target="_blank">Discord</a>
-            <a href="https://github.com/daven.dev" class="link" target="_blank">GitHub</a>
+        <div class="button-group">
+            <a href="https://katie.davens.world" class="btn" target="_blank">My Sister</a>
+            <a href="https://daven.dev" class="btn" target="_blank">GitHub</a>
+            <a href="https://jace.davens.world" class="btn" target="_blank">Ma monkeh Jace</a>
+            <a href="https://discord.gg/hccg2rY5p" class="btn" target="_blank">Discord</a>
         </div>
     </div>
 
