@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Davens World</title>
+    <title>Daven's World - The Ultimate Experience</title>
     <style>
         * {
             margin: 0;
@@ -12,338 +12,535 @@
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0a0a0a;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
             cursor: none;
         }
 
-        #canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .main-container {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-        }
-
-        .github-text {
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #00ff88, #00ccff, #ff00ff);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-shift 3s ease infinite;
-            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-            letter-spacing: 2px;
-            transform: perspective(500px) rotateX(15deg);
-            transition: all 0.3s ease;
-        }
-
-        .github-text:hover {
-            transform: perspective(500px) rotateX(0deg) scale(1.1);
-            text-shadow: 0 0 50px rgba(0, 255, 136, 0.8);
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #00ff88;
-            border-radius: 50%;
-            animation: float 6s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px) scale(0);
-                opacity: 0;
-            }
-        }
-
-        .geometric-shape {
-            position: absolute;
-            border: 2px solid rgba(0, 255, 136, 0.3);
-            animation: rotate 20s infinite linear;
-        }
-
-        .triangle {
-            width: 0;
-            height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 86px solid rgba(0, 204, 255, 0.2);
-            top: 20%;
-            left: 10%;
-        }
-
-        .square {
-            width: 80px;
-            height: 80px;
-            border-color: rgba(255, 0, 255, 0.2);
-            top: 70%;
-            right: 15%;
-            animation-duration: 15s;
-        }
-
-        .hexagon {
-            width: 60px;
-            height: 34.64px;
-            background: rgba(0, 255, 136, 0.1);
-            position: absolute;
-            top: 40%;
-            right: 20%;
-        }
-
-        .hexagon:before,
-        .hexagon:after {
-            content: "";
-            position: absolute;
-            width: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-        }
-
-        .hexagon:before {
-            bottom: 100%;
-            border-bottom: 17.32px solid rgba(0, 255, 136, 0.1);
-        }
-
-        .hexagon:after {
-            top: 100%;
-            border-top: 17.32px solid rgba(0, 255, 136, 0.1);
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .cursor-glow {
+        /* Custom Cursor */
+        .cursor {
             position: fixed;
             width: 20px;
             height: 20px;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.8) 0%, transparent 70%);
+            background: radial-gradient(circle, #00ff88 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transition: transform 0.1s ease;
         }
 
-        .neon-grid {
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(0, 255, 136, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section with 3D Effects */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .hero-content {
+            text-align: center;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotateX(0deg); }
+            50% { transform: translateY(-20px) rotateX(5deg); }
+        }
+
+        .main-title {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ff88, #00ccff, #ff00ff, #00ff88);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 3s ease infinite;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #00ff88;
+            opacity: 0.8;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+            to { text-shadow: 0 0 30px rgba(0, 255, 136, 0.8); }
+        }
+
+        /* 3D Product Preview Container */
+        .product-3d {
             position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 300px;
+            perspective: 1200px;
+        }
+
+        .product-cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate3d 15s infinite linear;
+            cursor: grab;
+        }
+
+        .product-cube:active {
+            cursor: grabbing;
+        }
+
+        @keyframes rotate3d {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 255, 0.2));
+            border: 2px solid #00ff88;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .front { transform: translateZ(150px); }
+        .back { transform: translateZ(-150px) rotateY(180deg); }
+        .right { transform: rotateY(90deg) translateZ(150px); }
+        .left { transform: rotateY(-90deg) translateZ(150px); }
+        .top { transform: rotateX(90deg) translateZ(150px); }
+        .bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+        /* Interactive Buttons with Ripple Effect */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 1rem;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            border: none;
+            border-radius: 50px;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Scroll Storytelling Sections */
+        .story-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .story-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-content {
+            max-width: 800px;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .story-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff00ff, #00ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Interactive Data Visualization */
+        .data-viz {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: end;
+            height: 200px;
+            margin: 2rem 0;
+        }
+
+        .bar {
+            width: 40px;
+            background: linear-gradient(to top, #00ff88, #00ccff);
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .bar:hover {
+            transform: scaleY(1.1);
+            filter: brightness(1.2);
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .bar:hover .bar-value {
+            opacity: 1;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00ccff, #ff00ff);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Geometric Background Elements */
+        .geometric-bg {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: grid-move 10s infinite linear;
-            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .pulse-ring {
+        .geo-element {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            border: 2px solid rgba(0, 255, 136, 0.5);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            animation: float-geo 20s infinite ease-in-out;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 0;
-            }
+        @keyframes float-geo {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title { font-size: 3rem; }
+            .product-3d { display: none; }
+            .story-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
     
-    <div class="neon-grid"></div>
-    
-    <div class="particles" id="particles"></div>
-    
-    <div class="geometric-shape triangle"></div>
-    <div class="geometric-shape square"></div>
-    <div class="geometric-shape hexagon"></div>
-    
-    <div class="pulse-ring"></div>
-    
-    <div class="main-container">
-        <h1 class="github-text">daven.dev</h1>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
     </div>
-    
-    <div class="cursor-glow" id="cursor"></div>
+
+    <!-- Geometric Background -->
+    <div class="geometric-bg" id="geometric-bg"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="main-title">Daven's World</h1>
+            <p class="subtitle">Where Code Meets Creativity</p>
+            <a href="#explore" class="cta-button" onclick="createRipple(event, this)">Explore My Universe</a>
+            <a href="https://github.com/daven.dev" class="cta-button" onclick="createRipple(event, this)" target="_blank">GitHub: daven.dev</a>
+        </div>
+
+        <!-- 3D Product Preview -->
+        <div class="product-3d">
+            <div class="product-cube" id="product-cube">
+                <div class="cube-face front">DAVEN</div>
+                <div class="cube-face back">WORLD</div>
+                <div class="cube-face right">CODE</div>
+                <div class="cube-face left">CREATE</div>
+                <div class="cube-face top">INNOVATE</div>
+                <div class="cube-face bottom">DOMINATE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section 1: The Journey -->
+    <section class="story-section" id="journey">
+        <div class="story-content">
+            <h2 class="story-title">The Journey Begins</h2>
+            <p>Every line of code tells a story. Every project is a new dimension in Daven's World. From simple scripts to complex architectures, this is where magic happens.</p>
+            
+            <div class="data-viz">
+                <h3>Creative Output Over Time</h3>
+                <div class="chart-container" id="chart">
+                    <div class="bar" style="height: 60%" data-value="Projects" data-count="42">
+                        <span class="bar-label">Projects</span>
+                        <span class="bar-value">42</span>
+                    </div>
+                    <div class="bar" style="height: 80%" data-value="Code" data-count="10K+">
+                        <span class="bar-label">Lines</span>
+                        <span class="bar-value">10K+</span>
+                    </div>
+                    <div class="bar" style="height: 45%" data-value="Innovations" data-count="23">
+                        <span class="bar-label">Innovations</span>
+                        <span class="bar-value">23</span>
+                    </div>
+                    <div class="bar" style="height: 90%" data-value="Worlds" data-count="∞">
+                        <span class="bar-label">Worlds</span>
+                        <span class="bar-value">∞</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section 2: The Innovation -->
+    <section class="story-section" id="innovation">
+        <div class="story-content">
+            <h2 class="story-title">Innovation Hub</h2>
+            <p>Breaking boundaries, rewriting rules. This isn't just development - it's digital artistry at its finest.</p>
+            <a href="#contact" class="cta-button" onclick="createRipple(event, this)">Join The Revolution</a>
+        </div>
+    </section>
 
     <script>
-        // Canvas animation
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
+        // Cursor Effects
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursor-follower');
         
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 100;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.radius = Math.random() * 3 + 1;
-                this.color = `hsl(${Math.random() * 60 + 180}, 100%, 50%)`;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
-
-        // Create particles
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            // Draw connections
-            particles.forEach((particle, i) => {
-                particles.slice(i + 1).forEach(otherParticle => {
-                    const dx = particle.x - otherParticle.x;
-                    const dy = particle.y - otherParticle.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.moveTo(particle.x, particle.y);
-                        ctx.lineTo(otherParticle.x, otherParticle.y);
-                        ctx.strokeStyle = `rgba(0, 255, 136, ${1 - distance / 100})`;
-                        ctx.stroke();
-                    }
-                });
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-
-        // Floating particles
-        function createFloatingParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            particle.style.animationDelay = Math.random() * 2 + 's';
-            
-            const colors = ['#00ff88', '#00ccff', '#ff00ff'];
-            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
-            document.getElementById('particles').appendChild(particle);
-            
-            setTimeout(() => particle.remove(), 6000);
-        }
-
-        setInterval(createFloatingParticle, 200);
-
-        // Cursor glow effect
         document.addEventListener('mousemove', (e) => {
-            const cursor = document.getElementById('cursor');
             cursor.style.left = e.clientX - 10 + 'px';
             cursor.style.top = e.clientY - 10 + 'px';
-        });
-
-        // Resize handler
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Click effect
-        document.addEventListener('click', (e) => {
-            const clickEffect = document.createElement('div');
-            clickEffect.style.position = 'fixed';
-            clickEffect.style.left = e.clientX - 25 + 'px';
-            clickEffect.style.top = e.clientY - 25 + 'px';
-            clickEffect.style.width = '50px';
-            clickEffect.style.height = '50px';
-            clickEffect.style.border = '2px solid #00ff88';
-            clickEffect.style.borderRadius = '50%';
-            clickEffect.style.pointerEvents = 'none';
-            clickEffect.style.animation = 'pulse 0.6s ease-out';
-            document.body.appendChild(clickEffect);
             
-            setTimeout(() => clickEffect.remove(), 600);
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX - 20 + 'px';
+                cursorFollower.style.top = e.clientY - 20 + 'px';
+            }, 100);
+        });
+
+        // Ripple Effect
+        function createRipple(event, button) {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Scroll-triggered Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.story-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // 3D Cube Interaction
+        const cube = document.getElementById('product-cube');
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        cube.addEventListener('mousedown', dragStart);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', dragEnd);
+
+        function dragStart(e) {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+            isDragging = true;
+            cube.style.animation = 'none';
+        }
+
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                xOffset = currentX;
+                yOffset = currentY;
+                cube.style.transform = `rotateX(${-currentY * 0.5}deg) rotateY(${currentX * 0.5}deg)`;
+            }
+        }
+
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+        }
+
+        // Interactive Chart
+        const bars = document.querySelectorAll('.bar');
+        bars.forEach(bar => {
+            bar.addEventListener('click', function() {
+                const value = this.dataset.value;
+                const count = this.dataset.count;
+                this.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 500);
+            });
+        });
+
+        // Generate Geometric Background Elements
+        function createGeometricElements() {
+            const bg = document.getElementById('geometric-bg');
+            const shapes = ['triangle', 'square', 'circle', 'hexagon'];
+            
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.className = 'geo-element';
+                
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                const size = Math.random() * 100 + 50;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 5;
+                
+                element.style.width = size + 'px';
+                element.style.height = size + 'px';
+                element.style.left = left + '%';
+                element.style.top = top + '%';
+                element.style.animationDelay = delay + 's';
+                
+                if (shape === 'triangle') {
+                    element.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+                } else if (shape === 'circle') {
+                    element.style.borderRadius = '50%';
+                } else if (shape === 'hexagon') {
+                    element.style.clipPath = 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)';
+                }
+                
+                bg.appendChild(element);
+            }
+        }
+
+        // Initialize
+        createGeometricElements();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>
